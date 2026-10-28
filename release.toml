@@ -24,4 +24,7 @@ upstream_license = "BSD-3-Clause"
 upstream_authors = "Eli Bendersky <eliben@gmail.com>"
 smoke_exprs = [
 "pycparser.__name__ == 'pycparser'",
+"pycparser.CParser().parse('int x;', '').ext[0].name == 'x'",
+"'int x' in pycparser.c_generator.CGenerator().visit(pycparser.CParser().parse('int x;', ''))",
+"pycparser.CParser(dialect='c23').parse('static_assert(sizeof(int) >= 2, \"ok\");', '').ext[0].cond is not None",
 ]

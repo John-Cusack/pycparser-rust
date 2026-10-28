@@ -1,0 +1,11 @@
+[package]
+name = "pycparser-rust-core"
+version = "0.1.0"
+edition = "2021"
+description = "Reusable Rust core: C lexer + recursive-descent parser (pycparser port)"
+license = "MIT"
+repository = "https://github.com/John-Cusack/pycparser-rust"
+
+[lib]
+name = "pycparser_rust_core"
+crate-type = ["rlib"]
