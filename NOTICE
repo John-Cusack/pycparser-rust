@@ -1,0 +1,10 @@
+pycparser-rust: Rust port of eliben/pycparser
+https://github.com/eliben/pycparser
+Upstream authors: Eli Bendersky <eliben@gmail.com>
+Upstream license: BSD-3-Clause
+
+This is a clean-room Rust implementation of the pycparser C parser API.
+It incorporates no code from the upstream project; behavior, message texts,
+and the AST shape are modelled on pycparser 3.12 for drop-in compatibility.
+
+This project is licensed under MIT (see LICENSE).

@@ -1,0 +1,27 @@
+# Release configuration scaffolded by `release-prep --init`.
+# Reviewed defaults: replace the smoke vector with real installed-package
+# checks and fill in `upstream_authors` before the first `release-prep`.
+# Field meanings are documented in `docs/RELEASE.md`.
+
+[release]
+schema = 1
+project = "pycparser"
+rust_crate = "pycparser-rust-core"
+pypi_dist = "pycparser-rust"
+python_import = "pycparser"
+version = "0.1.0"
+requires_python = ">=3.9"
+python_versions = ["3.9", "3.10", "3.11", "3.12", "3.13"]
+platforms = ["ubuntu-22.04", "macos-14", "windows-2022"]
+github_repo = "John-Cusack/pycparser-rust"
+release_workflow = ".github/workflows/release.yml"
+pypi_environment = "pypi"
+testpypi_environment = "testpypi"
+license_spdx = "MIT"
+upstream = "eliben/pycparser"
+upstream_url = "https://github.com/eliben/pycparser"
+upstream_license = "BSD-3-Clause"
+upstream_authors = "Eli Bendersky <eliben@gmail.com>"
+smoke_exprs = [
+"pycparser.__name__ == 'pycparser'",
+]
