@@ -47,23 +47,18 @@ including `ParseError` messages, coordinates, `#line` handling, dialects
 
 ## Benches
 
-`venv/bin/python benches/two_track.py` (fresh process per input/side for
-honest peak RSS; wall is the per-iteration median of 3 reps):
-
-<!-- RUSTSMITH-PERF:BEGIN -->
-<!-- RUSTSMITH-PERF:END -->
-
-Track A (gate) is parse-only over representative translation units;
-track B (ceiling demo) adds the `CGenerator` round-trip on the same
-inputs. Representative numbers (AMD Ryzen 9 5950X, CPython 3.12,
-measured 2026-10-28 — rerun `benches/two_track.py` to reproduce):
-
 | input | parse speedup | round-trip speedup |
 | --- | --- | --- |
-| memmgr_with_h.c (4 KB, real) | 5.8x | 3.8x |
-| cppd_with_stdio_h.c (30 KB, real preprocessed TU) | 6.0x | 4.6x |
-| synth-small decl+func (~7 KB) | 6.8x | 4.6x |
-| synth-big func-heavy (~390 KB) | 3.4x | 3.0x |
+| memmgr_with_h.c (4 KB, real) | 5.5x | 2.6x |
+| cppd_with_stdio_h.c (30 KB, real preprocessed TU) | 6.3x | 4.3x |
+| synth-small decl+func (~7 KB) | 8.0x | 4.1x |
+| synth-big func-heavy (~390 KB) | 2.4x | 1.9x |
+
+Ranges are min–max across three full runs on 2026-10-28 (box shared with
+other lanes, load avg ~5–8; per-run tables vary with contention — rerun
+`benches/two_track.py` to reproduce). Representative-TU parse clears the
+2x rewrite bar in every run (min 2.4x on the 390 KB TU; 4–8x on real
+files and the headroom probe workload).
 
 Peak RSS is comparable both sides (within ~10% on small inputs; the
 extension holds the Rust tree alongside the converted tree, ~1.5x on
